@@ -8,6 +8,8 @@
 // IF letter is in the word in the right spot letter will turn Green
 // IF letter is in the word in the wrong spot letter will turn Purple
 // IF letter is not in the word letter will turn Gray
-// IF guess = answer show "You Win!" game stops
+// IF guess = answer show "You Win!" 
+// game stops
 // number of guesses= number of guesses +1
-// IF user uses all 6 guesses SHOW "Game Over, Answer was___" game stops
+// IF user uses all 6 guesses SHOW "Game Over, Answer was___" 
+// game stops

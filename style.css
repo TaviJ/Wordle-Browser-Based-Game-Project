@@ -1,0 +1,30 @@
+body{
+    background-color: pink;
+  font-family: "Cherry Bomb One", system-ui;
+  font-weight: 600;
+  text-align: center;
+  font-size: 65px;
+  color: rgba(0, 0, 0, 0.752);
+
+  background-image: url("https://image.tmdb.org/t/p/original/zFdHbLQqkTgxd2eJyYbufwyE22M.jpg");
+  background-size: cover; 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+ 
+#board{
+  width: 400px;
+  height: 460px;
+  margin: 59px;
+  margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: aliceblue;
+}
+
+.tile{
+  border: 4px solid rgba(0, 0, 0, 0.714);
+  width: 60px;
+  height: 60px;
+}
