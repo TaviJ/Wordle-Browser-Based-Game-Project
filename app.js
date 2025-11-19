@@ -30,12 +30,65 @@ let gameOver = false;
 const squareEls = document.querySelectorAll(".sqr");
 const answerEl = document.getElementById("answer");
 /*-------------- Functions -------------*/
+function addLetter(letter) {
+  if (gameOver) return; 
+  if (currentCol < wordLength) {
+    const squareIndex = currentRow * wordLength + currentCol;
+    squareEls[squareIndex].textContent = letter;
+    currentGuess += letter;
+    currentCol++;
+  }
+} 
+function deleteLetter() {
+  if (gameOver) return;
+  if (currentCol > 0) {
+    currentCol--;
+    const squareIndex = currentRow * wordLength + currentCol;
+    squareEls[squareIndex].textContent = '';
+    currentGuess = currentGuess.slice(0, -1);
+  }
 
+}
+function submitGuess() {
+  if (gameOver) return;
+  if (currentGuess.length !== wordLength) {
+    alert("Guess must be 5 letters");
+    return;
+  }
 
+  // Check the guess against the answer
+  for (let i = 0; i < wordLength; i++) {
+    const squareIndex = currentRow * wordLength + i;
+    const squareEl = squareEls[squareIndex];
+    const letter = currentGuess[i];
+
+    if (letter === answer[i]) {
+      squareEl.style.backgroundColor = 'green';
+    } else if (answer.includes(letter)) {
+      squareEl.style.backgroundColor = 'purple';
+    } else {
+      squareEl.style.backgroundColor = 'gray';
+    }
+  }
+
+  if (currentGuess === answer) {
+    alert("You Win!");
+    gameOver = true;
+    return;
+  }
+
+  currentRow++;
+  currentCol = 0;
+  currentGuess = '';
+
+  if (currentRow === maxGuesses) {
+    alert(`Game Over, The answer was ${answer}`);
+    gameOver = true;
+  }
+}
 /*----------- Event Listeners ----------*/
 document.addEventListener('keydown', function (e) {
   if (gameOver) return;
-
   const key = e.key.toUpperCase();
 
   if (key >= 'A' && key <= 'Z' && key.length === 1) {
@@ -45,5 +98,29 @@ document.addEventListener('keydown', function (e) {
   } else if (key === "ENTER") {
     submitGuess();
   }
+});
+
+// On-screen keyboard click events
+document.querySelectorAll('.key').forEach(keyBtn => {
+  keyBtn.addEventListener('click', () => {
+if (gameOver) return;
+    const key = keyBtn.textContent.toUpperCase();
 
 
+
+    if (key === "ENTER") {
+      submitGuess();
+    } else if (key === "DEL") {
+      deleteLetter();
+    } else if (key.length === 1 && key >= "A" && key <= "Z") {
+      addLetter(key);
+    }
+  });
+});
+
+/*-------------- Init Function ----------*/
+function init() {
+
+}
+
+init();

@@ -14,16 +14,17 @@ body{
 }
  
 .board{
-  width: 360px;
-  height: 420px;
-  margin: 0 0 10vw 15vw;
+  width: 350px;
+  height: 435px;
+  margin: -3vw 0 0 15vw;
+   border-radius: 10px;
   display: flex;
   flex-wrap: wrap;
-  background-color: aliceblue;
+  background-color: rgba(240, 248, 255, 0.722);
 }
 
-.tile{
-  border: 4px solid rgba(0, 0, 0, 0.714);
+.sqr{
+  border: 3px solid rgba(0, 0, 0, 0.752);
   width: 60px;
   height: 60px;
   margin: 2px;
@@ -33,4 +34,40 @@ body{
   font-weight: 600;
   text-transform: uppercase;
   font-size: 40px;
+   border-radius: 10px;
+}
+ #keyboard{
+  margin: 2.5vw 0 0 15vw;
+  width: 350px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+} 
+.key{
+  border: 3px solid rgba(0, 0, 0, 0.752);
+  width: 40px;
+  height: 58px;
+  margin: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 20px;
+   border-radius: 10px;
+   background-color: rgba(255, 255, 255, 0.753);
+   cursor: pointer;
+}
+.bottom-row{
+  width: 350px; 
+  margin: 2.5vw 0 0 15vw;
+  display: flex;
+ justify-content: center;
+
+}
+.big-key{
+  width: 75px;
+}
+.key:active{
+  background-color: rgba(200, 200, 200, 0.753);
 }
