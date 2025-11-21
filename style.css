@@ -13,6 +13,10 @@ body{
   background-attachment: fixed;
 }
  
+h1{
+  margin: 0 0 0 0;
+}
+
 .board{
   width: 350px;
   height: 435px;
@@ -20,7 +24,7 @@ body{
    border-radius: 10px;
   display: flex;
   flex-wrap: wrap;
-  background-color: rgba(240, 248, 255, 0.722);
+  background-color: rgba(225, 225, 225, 0.753);
 }
 
 .sqr{
@@ -49,6 +53,7 @@ body{
   height: 58px;
   margin: 4px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   font-weight: 600;
@@ -85,7 +90,7 @@ body{
 }
 #reset-btn{
   position: fixed;
-  top: 60%;
+  top: 70%;
   left: 55%;
   transform: translateX(-50%);
   padding: 10px 20px;
@@ -94,4 +99,38 @@ body{
   border: none;
   border-radius: 5px;
   display: none;
+}
+
+#instructions-btn{
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-size: 15px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  
+}
+#instructions-popup.hidden {
+  display: none;
+  
+}
+
+#instructions-popup{
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 75vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  text-align: center;
+}
+.instructions-content{
+  background: rgba(255, 255, 255, 0.942);
+  font-size: 18px; 
+  padding: 10px;  
+  width: 50%;
+  border-radius: 10px;
 }
