@@ -18,7 +18,8 @@
 const maxGuesses = 6;
 const wordLength = 5;
 const wordList = ['BLINK', 'BERRY', 'STRAY', 'DREAM', 'PEACH', 'INDIE', 'SCONE', 'TOPAZ', 'VINYL', 'SLOTH', 'STORM', 'HONEY', 'LIGHT'];
-const answer = wordList[Math.floor(Math.random() * wordList.length)];
+let answer = wordList[Math.floor(Math.random() * wordList.length)];
+
 
 /*---------- Variables (state) ---------*/
 let currentGuess = '';
@@ -29,6 +30,8 @@ let gameOver = false;
 /*----- Cached Element References  -----*/
 const squareEls = document.querySelectorAll(".sqr");
 const answerEl = document.getElementById("answer");
+const messageEl = document.getElementById("message");
+const resetBtn = document.getElementById("reset-btn");
 /*-------------- Functions -------------*/
 function addLetter(letter) {
   if (gameOver) return; 
@@ -52,11 +55,11 @@ function deleteLetter() {
 function submitGuess() {
   if (gameOver) return;
   if (currentGuess.length !== wordLength) {
-    alert("Guess must be 5 letters");
+    showMessage("Guess must be 5 letters");
     return;
   }
 
-  // Check the guess against the answer
+
   for (let i = 0; i < wordLength; i++) {
     const squareIndex = currentRow * wordLength + i;
     const squareEl = squareEls[squareIndex];
@@ -72,9 +75,11 @@ function submitGuess() {
   }
 
   if (currentGuess === answer) {
-    alert("You Win!");
+    showMessage("You Win!");
     gameOver = true;
+    resetBtn.style.display = 'block';
     return;
+     
   }
 
   currentRow++;
@@ -82,10 +87,32 @@ function submitGuess() {
   currentGuess = '';
 
   if (currentRow === maxGuesses) {
-    alert(`Game Over, The answer was ${answer}`);
+    showMessage(`Game Over, The answer was ${answer}`);
     gameOver = true;
+    resetBtn.style.display = 'block';
   }
 }
+function showMessage(msg) {
+  messageEl.textContent = msg;
+  setTimeout(() => {
+    messageEl.textContent = '';
+  }, 3000);
+}
+
+function resetGame() {
+  currentGuess = '';
+  currentRow = 0;
+  currentCol = 0;
+  gameOver = false;
+  squareEls.forEach(sq => {
+    sq.textContent = '';
+    sq.style.backgroundColor = '';
+  });
+  answer = wordList[Math.floor(Math.random() * wordList.length)];
+  messageEl.textContent = '';
+  resetBtn.style.display = 'none';
+}
+
 /*----------- Event Listeners ----------*/
 document.addEventListener('keydown', function (e) {
   if (gameOver) return;
@@ -100,7 +127,7 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
-// On-screen keyboard click events
+
 document.querySelectorAll('.key').forEach(keyBtn => {
   keyBtn.addEventListener('click', () => {
 if (gameOver) return;
@@ -118,9 +145,4 @@ if (gameOver) return;
   });
 });
 
-/*-------------- Init Function ----------*/
-function init() {
-
-}
-
-init();
+resetBtn.addEventListener('click', resetGame);
